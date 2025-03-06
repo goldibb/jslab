@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider {
+            width: 100%;
+            height: 200px;
+            border: 1px solid black;
+        }
+        #slider-inner {
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 24px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="slider">
+            <div id="slider-inner">
+                <img src="https://fastly.picsum.photos/id/656/1200/600.jpg?hmac=bijlYJqofMvl_40gUi0OUC9uvydtBn8GvccZVsiQJ5E" alt="">
+                <img src="https://fastly.picsum.photos/id/498/1200/600.jpg?hmac=va6Jle62xnYB0puFo1D-MdbnHLog9whX8JH3biF8kwA" alt="">
+                <img src="https://fastly.picsum.photos/id/1025/1200/600.jpg?hmac=gy8o5MGiwbFujpweL5_PZtRNcekLej_I37VP_n-_Vk0" alt="">
+                <img src="https://fastly.picsum.photos/id/264/1200/600.jpg?hmac=Dcmip5W_9x696eCH3cVIXDVaPrPRZvBM3HLOn8yWYZA" alt="">
+                <img src="https://fastly.picsum.photos/id/39/1200/600.jpg?hmac=MSnjQsaeJt6f25gKOgiEItu8Qa2_huheViugU966tm8" alt="">
+                <img src="https://fastly.picsum.photos/id/77/1200/600.jpg?hmac=YiLVCDMxtN08n54YxPfoQAw-AOlI7oQdmPv5OMv0VN8" alt="">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+        </section>
+    </main>
+    <script>
+        let position = 0;
+        const img = document.querySelector('#slider-inner');
+        function animateSlider(){
+            img.style.transform = `translateX(${position}px)`;
+            position += 1;
+            if(position > 1400){
+                position = 0;
+            }
+            requestAnimationFrame(animateSlider);
+        }
+        animateSlider(); 
+    </script>
+</body>
+</html>
