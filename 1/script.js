@@ -43,7 +43,6 @@ add.addEventListener('click', ()=>{
 function updateValues() {
     const values = Array.from(inputs).map(input => +input.value);
     
-
     const minValue = Math.min(...values);
     const maxValue = Math.max(...values);
     const sumValue = values.reduce((sum, value) => sum + value, 0);
