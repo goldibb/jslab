@@ -1,23 +1,51 @@
-// daty
-const terazTimestamp = Date.now()
-const teraz = new Date(terazTimestamp)
-console.log(teraz.toLocaleString())
+document.addEventListener('DOMContentLoaded', () => {
+    const notesForm = document.getElementById('notesForm')
+    const notesList = document.getElementById('notesList')
 
-// localStorage
-// zapisywanie
-// localStorage.setItem(key, value)
-// pobieranie
-// localStorage.getItem(key)'
+    function getNotesFromStorage(){
+        return JSON.parse(localStorage.getItem('notes')) || []
+    }
+    function saveNotesToStorage(notes){
+        localStorage.setItem('notes', JSON.stringify(notes))
+        renderNotes()
+    }
 
-const notes = [
-    {
-        title: 'note 1',
-        content: 'content',
-        color: dadada,
-        isPinned: false,
-        createdDate: new Date(),
-    },
+    function renderNotes() {
+        notesContainer.innerHTML = "";
+        let notes = getNotesFromStorage()
+        
+        notes.forEach(note => {
+            const noteElement = document.createElement('div')
+            noteElement.classList.add('note')
+            noteElement.style.backgroundColor = note.color
+            noteElement.innerHTML = `
+                <h2>${note.title}</h2>
+                <p>${note.content}</p>
+                <span>${new Date(note.createdDate).toLocaleString()}</span>
+            `
+            notesList.appendChild(noteElement)
+        })
+    }
 
-];
+    notesForm.addEventListener('submit', () => {
+        const title = document.getElementById('name').value
+        const content = document.getElementById('content').value
+        const color = document.getElementById('color').value
+        const isPinned = document.getElementById('isPinned').checked
 
-const jsonNotes = JSON.stringify(notes);
+
+        const NoteTemplate = {
+            title,
+            content,
+            color,
+            isPinned,
+            createdDate: new Date().toISOString(),
+        }
+        const notes = getNotesFromStorage()
+        notes.push(NoteTemplate)
+        saveNotesToStorage(notes)
+        notesForm.reset()
+    })
+    renderNotes()
+    
+})

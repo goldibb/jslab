@@ -6,12 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="notes">
-        <input type="text" id="name">Tytuł</input>
-        <input type="text" id="content"> </input>
-        <input type="color" id="color"> </input>
-        <input type="checkbox" id="isPinned"></input>
-        <p id="date"></p>
+    <div class="container">
+        <h1>Notatki</h1>
+        <form id="noteForm">
+            <input type="text" id="title" required>
+            <textarea id="content" required></textarea>
+            <input type="color" id="color">
+            <input type="checkbox" id="isPinned">
+            <button type="submit">Dodaj notatkę</button>
+        </form>
+        <div id="notesList"></div>
     </div>
     <script src="main.js"></script>
 </body>
