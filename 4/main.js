@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const notesForm = document.getElementById('notesForm')
+    const notesForm = document.getElementById('noteForm')
     const notesList = document.getElementById('notesList')
 
     function getNotesFromStorage(){
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderNotes() {
-        notesContainer.innerHTML = "";
+        notesList.innerHTML = "";
         let notes = getNotesFromStorage()
         
         notes.forEach(note => {
@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    notesForm.addEventListener('submit', () => {
+    notesForm.addEventListener('submit', (event) => {
+        event.preventDefault()
         const title = document.getElementById('name').value
         const content = document.getElementById('content').value
         const color = document.getElementById('color').value
