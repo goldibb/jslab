@@ -1,21 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Aplikacja Notatek</title>
 </head>
 <body>
     <div class="container">
-        <h1>Notatki</h1>
-        <form id="noteForm">
-            <input type="text" id="name" required>
-            <textarea id="content" required></textarea>
-            <input type="color" id="color">
-            <input type="checkbox" id="isPinned">
-            <button type="submit">Dodaj notatkę</button>
-        </form>
-        <div id="notesList"></div>
+        <div class="header">
+            <h1>📝 Moje Notatki</h1>
+            <p>Organizuj swoje myśli i pomysły</p>
+        </div>
+        
+        <div class="note-form">
+            <div class="form-group">
+                <label for="noteTitle">Tytuł</label>
+                <input type="text" id="noteTitle" class="form-input" placeholder="Wprowadź tytuł notatki..." required>
+            </div>
+            <div class="form-group">
+                <label for="noteContent">Treść</label>
+                <textarea id="noteContent" class="form-input form-textarea" placeholder="Napisz swoją notatkę..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="noteColor">Kolor</label>
+                <input type="color" id="noteColor" class="form-input" value="#007bff">
+            </div>
+            <div class="form-group">
+                <label for="noteChecked">Przypięta</label>
+                <input type="checkbox" id="noteChecked" class="form-input">
+            </div>
+            <button type="submit" class="btn btn-primary" id="addNoteBtn">
+                ➕ Dodaj Notatkę
+            </button>
+        </div>
+        <div class="search-wrapper">
+            <label for="searchInput">Szukaj</label>
+            <input type="search" id="searchInput" class="search-input" placeholder="Szukaj notatki...">
+        </div>
+        <div class="notes-container">
+            <div id="notesList" class="notes-grid"></div>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <h3>Brak notatek</h3>
+                <p>Dodaj swoją pierwszą notatkę powyżej!</p>
+            </div>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
