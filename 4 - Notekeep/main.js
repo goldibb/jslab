@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 })
 function isColorTooDark(hexColor) {
-    // Convert hex to RGB
+    
     const r = parseInt(hexColor.slice(1, 3), 16);
     const g = parseInt(hexColor.slice(3, 5), 16);
     const b = parseInt(hexColor.slice(5, 7), 16);
@@ -146,10 +146,8 @@ function isColorTooDark(hexColor) {
     // Calculate luminance (perceived brightness)
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   
-    // Adjust the threshold as needed (0.5 is a good starting point)
     const darknessThreshold = 0.5;
   
-    // Return true if the color is too dark
     return luminance < darknessThreshold;
   }
 
