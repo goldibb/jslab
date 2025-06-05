@@ -171,25 +171,7 @@ function ballMovement(){
     }
 }
 
-function OrientationHandler(event) {
-    console.log('🎯 Sensor zadziałał!', event)
-    
-    const beta = event.beta
-    const gamma = event.gamma
-    
-    console.log(`📱 Beta: ${beta}, Gamma: ${gamma}`)
 
-    x = gamma / 5
-    y = -beta / 5
-    
-    console.log(`🎮 X: ${x}, Y: ${y}`)
-
-    b.speed = Math.min((Math.abs(x) + Math.abs(y))/3, 8)
-    console.log(`⚡ Speed: ${b.speed}`)
-    
-    
-    state.innerHTML = `Beta: ${beta?.toFixed(1)}, Gamma: ${gamma?.toFixed(1)} | X: ${x.toFixed(1)}, Y: ${y.toFixed(1)} | Speed: ${b.speed.toFixed(2)}`
-}
 
 document.querySelector('.start-button').addEventListener('click', () => {
     if(!gameActive) {
@@ -226,29 +208,22 @@ document.querySelector('.start-button').addEventListener('click', () => {
 
 
 
-async function requestDeviceOrientation(){
-    if(typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){
-        state.innerHTML = 'requestPermission'
-        try{
-            const permissionState = await DeviceOrientationEvent.requestPermission()
-            if(permissionState === 'granted'){
-                state.innerHTML = 'Permission granted'
-                window.addEventListener("deviceorientation", OrientationHandler)
-            }
+window.addEventListener('deviceorientation', e => {
+    console.log('🎯 Sensor zadziałał!', e)
+    
+    const beta = e.beta
+    const gamma = e.gamma
+    
+    console.log(`📱 Beta: ${beta}, Gamma: ${gamma}`)
 
-        }catch(e){
-            state.innerHTML = 'Permission denied'
-            alert('Permission denied')
-        }
+    x = gamma / 5
+    y = -beta / 5
+    
+    console.log(`🎮 X: ${x}, Y: ${y}`)
 
-    }else if('DeviceOrientationEvent' in window){
-        window.addEventListener("deviceorientation", OrientationHandler)
-    }else{
-        state.innerHTML = 'Device orientation not supported'
-        alert('Device orientation not supported')
-
-    }
-
-}
-
-requestDeviceOrientation()
+    b.speed = Math.min((Math.abs(x) + Math.abs(y))/3, 8)
+    console.log(`⚡ Speed: ${b.speed}`)
+    
+    
+    state.innerHTML = `Beta: ${beta?.toFixed(1)}, Gamma: ${gamma?.toFixed(1)} | X: ${x.toFixed(1)}, Y: ${y.toFixed(1)} | Speed: ${b.speed.toFixed(2)}`
+})
