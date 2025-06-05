@@ -10,10 +10,14 @@
 <body>
 
 <div class="container">
-    <div class="input-container">
-        <input type="text" id="cityInput" placeholder="Enbter city name"> 
-        <button id="add">+</button>
+    
+    <div class="search-container">
+        <input type="text" id="cityInput" placeholder="Wpisz nazwę miasta"> 
+        <button id="add">Dodaj miasto</button>
+        <button id="refresh" onclick="manualRefresh()">Odśwież</button>
     </div>
+    
+    <div id="updateInfo" class="update-info">Ostatnia aktualizacja: nigdy</div>
     
     <div class="weather-overview" id="weathercards">
         <div class="weather-card">

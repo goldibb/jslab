@@ -1,43 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drumkit</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>🥁 Drumkit Pro</title>
 </head>
 <body>
-    <audio src="./sounds/clap.wav" controls data-key="a" id="s1"></audio>
-    <audio src="./sounds/kick.wav" controls data-key="s" id="s2"></audio>
-    <audio src="./sounds/hihat.wav" controls data-key="d"id="s3"></audio>
-    <audio src="./sounds/boom.wav" controls data-key="f"id="s4"></audio>
-    <audio src="./sounds/tink.wav" controls data-key="g"id="s5"></audio>
-    <audio src="./sounds/tom.wav" controls data-key="h"id="s6"></audio>
-    <audio src="./sounds/snare.wav" controls data-key="j"id="s7"></audio>
-    <audio src="./sounds/openhat.wav" controls data-key="k"id="s8"></audio>
-    <audio src="./sounds/ride.wav" controls data-key="l"id="s9"></audio>
-    <div class="ChannelsControls">
-        <div class="channel">
-            <button id="record1">Start</button>
-            <button id="stop1">Stop</button>
-            <button id="play1">Play</button>
+    <!-- Audio elements (hidden) -->
+    <audio src="./sounds/clap.wav" data-key="a" id="s1"></audio>
+    <audio src="./sounds/kick.wav" data-key="s" id="s2"></audio>
+    <audio src="./sounds/hihat.wav" data-key="d" id="s3"></audio>
+    <audio src="./sounds/boom.wav" data-key="f" id="s4"></audio>
+    <audio src="./sounds/tink.wav" data-key="g" id="s5"></audio>
+    <audio src="./sounds/tom.wav" data-key="h" id="s6"></audio>
+    <audio src="./sounds/snare.wav" data-key="j" id="s7"></audio>
+    <audio src="./sounds/openhat.wav" data-key="k" id="s8"></audio>
+    <audio src="./sounds/ride.wav" data-key="l" id="s9"></audio>
+
+    <div class="container">
+       
+        <div class="drumkit">
+            <div class="drum-pad" data-key="a">
+                <div class="pad-surface">
+                    <span class="key">A</span>
+                    <span class="sound-name">CLAP</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="s">
+                <div class="pad-surface">
+                    <span class="key">S</span>
+                    <span class="sound-name">KICK</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="d">
+                <div class="pad-surface">
+                    <span class="key">D</span>
+                    <span class="sound-name">HIHAT</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="f">
+                <div class="pad-surface">
+                    <span class="key">F</span>
+                    <span class="sound-name">BOOM</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="g">
+                <div class="pad-surface">
+                    <span class="key">G</span>
+                    <span class="sound-name">TINK</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="h">
+                <div class="pad-surface">
+                    <span class="key">H</span>
+                    <span class="sound-name">TOM</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="j">
+                <div class="pad-surface">
+                    <span class="key">J</span>
+                    <span class="sound-name">SNARE</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="k">
+                <div class="pad-surface">
+                    <span class="key">K</span>
+                    <span class="sound-name">OPENHAT</span>
+                </div>
+            </div>
+            
+            <div class="drum-pad" data-key="l">
+                <div class="pad-surface">
+                    <span class="key">L</span>
+                    <span class="sound-name">RIDE</span>
+                </div>
+            </div>
         </div>
-        <div class="channel">
-            <button id="record2">Start</button>
-            <button id="stop2">Stop</button>
-            <button id="play2">Play</button>
-        </div>
-        <div class="channel">
-            <button id="record3">Start</button>
-            <button id="stop3">Stop</button>
-            <button id="play3">Play</button>
-        </div>
-        <div class="channel">
-            <button id="record4">Start</button>
-            <button id="stop4">Stop</button>
-            <button id="play4">Play</button>
+
+        <div class="controls-section">
+            <h2 class="section-title">Kontroler Nagrywania</h2>
+            
+            <div class="channels-grid">
+                <div class="channel-card">
+                    <h3 class="channel-title">Kanał 1</h3>
+                    <div class="channel-controls">
+                        <button class="btn btn-record" id="record1">
+                            <span class="btn-text">Nagrywaj</span>
+                        </button>
+                        <button class="btn btn-stop" id="stop1">
+                            <span class="btn-text">Stop</span>
+                        </button>
+                        <button class="btn btn-play" id="play1">
+                            <span class="btn-text">Odtwórz</span>
+                        </button>
+                    </div>
+                    <div class="recording-indicator" id="indicator1"></div>
+                </div>
+
+                <div class="channel-card">
+                    <h3 class="channel-title">Kanał 2</h3>
+                    <div class="channel-controls">
+                        <button class="btn btn-record" id="record2">
+                            
+                            <span class="btn-text">Nagrywaj</span>
+                        </button>
+                        <button class="btn btn-stop" id="stop2">
+                            
+                            <span class="btn-text">Stop</span>
+                        </button>
+                        <button class="btn btn-play" id="play2">
+                            
+                            <span class="btn-text">Odtwórz</span>
+                        </button>
+                    </div>
+                    <div class="recording-indicator" id="indicator2"></div>
+                </div>
+
+                <div class="channel-card">
+                    <h3 class="channel-title">Kanał 3</h3>
+                    <div class="channel-controls">
+                        <button class="btn btn-record" id="record3">
+                            <span class="btn-text">Nagrywaj</span>
+                        </button>
+                        <button class="btn btn-stop" id="stop3">
+                            <span class="btn-text">Stop</span>
+                        </button>
+                        <button class="btn btn-play" id="play3">
+                            <span class="btn-text">Odtwórz</span>
+                        </button>
+                    </div>
+                    <div class="recording-indicator" id="indicator3"></div>
+                </div>
+
+                <div class="channel-card">
+                    <h3 class="channel-title">Kanał 4</h3>
+                    <div class="channel-controls">
+                        <button class="btn btn-record" id="record4">
+                            <span class="btn-text">Nagrywaj</span>
+                        </button>
+                        <button class="btn btn-stop" id="stop4">
+                            <span class="btn-text">Stop</span>
+                        </button>
+                        <button class="btn btn-play" id="play4">
+                            <span class="btn-text">Odtwórz</span>
+                        </button>
+                    </div>
+                    <div class="recording-indicator" id="indicator4"></div>
+                </div>
+            </div>
+
+            <div class="master-controls">
+                <button class="btn btn-master" id="playAll">
+                    <span class="btn-icon">🎵</span>
+                    <span class="btn-text">ZAGRAJ WSZYSTKO</span>
+                </button>
+                <button class="btn btn-clear" id="clearAll">
+                    <span class="btn-icon">🗑️</span>
+                    <span class="btn-text">WYCZYŚĆ WSZYSTKO</span>
+                </button>
+            </div>
         </div>
     </div>
-    <button id="playAll" onclick="playAllChannels()">Zagraj wszystko</button>
+
     <script src="main.js"></script>
 </body>
 </html>
