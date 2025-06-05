@@ -7,7 +7,7 @@ showSlides(slideIndex)
 startAutoSlide()
 
 function plusSlides(n) {
-  if (isTransitioning) return // Zapobiegaj nakładaniu się animacji
+  if (isTransitioning) return
   
   stopAutoSlide()
   showSlides(slideIndex += n, n > 0 ? 'next' : 'prev')
@@ -33,7 +33,7 @@ function showSlides(n, direction = 'next') {
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   
-  // Usuń wszystkie klasy aktywne
+
   for (i = 0; i < slides.length; i++) {
     slides[i].classList.remove('active', 'prev', 'slide-in-left', 'slide-in-right', 'fade-in')
   }
@@ -41,26 +41,26 @@ function showSlides(n, direction = 'next') {
     dots[i].classList.remove('active-dot')
   }
   
-  // Dodaj klasy animacji w zależności od kierunku
+
   const currentSlide = slides[slideIndex-1]
   
-  // Płynne przejście z kierunkiem
+
   if (direction === 'next') {
     currentSlide.classList.add('active', 'slide-in-right')
   } else {
     currentSlide.classList.add('active', 'slide-in-left')
   }
   
-  // Dodatkowo fade-in dla lepszego efektu
+
   currentSlide.classList.add('fade-in')
   
-  // Aktywuj odpowiednią kropkę
+  
   dots[slideIndex-1].classList.add('active-dot')
   
-  // Pozwól na następną animację po zakończeniu
+  
   setTimeout(() => {
     isTransitioning = false
-  }, 800) // Czas trwania animacji CSS
+  }, 800) 
 }
 
 function autoSlide() {
@@ -100,7 +100,7 @@ document.querySelector('.slider').addEventListener('mouseleave', () => {
   }
 })
 
-// Keyboard controls
+
 document.addEventListener('keydown', (e) => {
   switch(e.key) {
     case 'ArrowLeft':
