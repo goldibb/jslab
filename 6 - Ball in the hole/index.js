@@ -73,13 +73,13 @@ function holeMovement(){
         h.dy *= -1
     }
 
-    h.x += h.dx;
-    h.y += h.dy;
+    h.x += h.dx
+    h.y += h.dy
 
-    hole.style.left = `${h.x}px`;
-    hole.style.top = `${h.y}px`;
+    hole.style.left = `${h.x}px`
+    hole.style.top = `${h.y}px`
     if(h.move){
-        h.ani = requestAnimationFrame(holeMovement);
+        h.ani = requestAnimationFrame(holeMovement)
     }
     
 }
@@ -128,28 +128,28 @@ function ballMovement(){
 
     if(b.y + b.dy > 500 - b.h || b.y +  b.dy < 0){
         if(b.y < 0){
-            b.y = 0;
+            b.y = 0
         }else if(b.y > 500 - b.h){
-            b.y = 500 - b.h;
+            b.y = 500 - b.h
         }
-        b.dy = 0;
+        b.dy = 0
     }
 
 
     if(b.x + b.dx > 300 - b.w || b.x + b.dx < 0){
         if(b.x < 0){
-            b.x = 0;
+            b.x = 0
         }else if(b.x > 300 - b.w){
-            b.x = 300 - b.w;
+            b.x = 300 - b.w
         }
-        b.dx = 0;
+        b.dx = 0
     }
 
-    b.x += b.dx * b.speed;
-    b.y += b.dy * b.speed;
+    b.x += b.dx * b.speed
+    b.y += b.dy * b.speed
 
-    ball.style.left = `${b.x}px`;
-    ball.style.top = `${b.y}px`;
+    ball.style.left = `${b.x}px`
+    ball.style.top = `${b.y}px`
 
     
     if((Math.abs(b.y - h.y) < 8) && (Math.abs(b.x - h.x) < 8)){
@@ -161,34 +161,34 @@ function ballMovement(){
         
         
         if(gameActive && b.move){
-            b.ani = requestAnimationFrame(ballMovement);
+            b.ani = requestAnimationFrame(ballMovement)
         }
         return
     }
 
     if(b.move && gameActive){
-        b.ani = requestAnimationFrame(ballMovement);
+        b.ani = requestAnimationFrame(ballMovement)
     }
 }
 
 function OrientationHandler(event) {
-    console.log('🎯 Sensor zadziałał!', event);
+    console.log('🎯 Sensor zadziałał!', event)
     
-    const beta = event.beta;
-    const gamma = event.gamma;
+    const beta = event.beta
+    const gamma = event.gamma
     
-    console.log(`📱 Beta: ${beta}, Gamma: ${gamma}`);
+    console.log(`📱 Beta: ${beta}, Gamma: ${gamma}`)
 
-    x = gamma / 5;
-    y = -beta / 5;
+    x = gamma / 5
+    y = -beta / 5
     
-    console.log(`🎮 X: ${x}, Y: ${y}`);
+    console.log(`🎮 X: ${x}, Y: ${y}`)
 
-    b.speed = Math.min((Math.abs(x) + Math.abs(y))/3, 8);
-    console.log(`⚡ Speed: ${b.speed}`);
+    b.speed = Math.min((Math.abs(x) + Math.abs(y))/3, 8)
+    console.log(`⚡ Speed: ${b.speed}`)
     
     
-    state.innerHTML = `Beta: ${beta?.toFixed(1)}, Gamma: ${gamma?.toFixed(1)} | X: ${x.toFixed(1)}, Y: ${y.toFixed(1)} | Speed: ${b.speed.toFixed(2)}`;
+    state.innerHTML = `Beta: ${beta?.toFixed(1)}, Gamma: ${gamma?.toFixed(1)} | X: ${x.toFixed(1)}, Y: ${y.toFixed(1)} | Speed: ${b.speed.toFixed(2)}`
 }
 
 document.querySelector('.start-button').addEventListener('click', () => {
@@ -210,11 +210,11 @@ document.querySelector('.start-button').addEventListener('click', () => {
         gameTimer = setInterval(updateTimer, 1000)
         
         
-        b.ani = requestAnimationFrame(ballMovement);
-        h.ani = requestAnimationFrame(holeMovement);
+        b.ani = requestAnimationFrame(ballMovement)
+        h.ani = requestAnimationFrame(holeMovement)
 
-        h.move = true;
-        b.move = true;
+        h.move = true
+        b.move = true
         
         document.querySelector('.start-button').innerHTML = 'Stop'
     } else {
@@ -230,7 +230,7 @@ async function requestDeviceOrientation(){
     if(typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){
         state.innerHTML = 'requestPermission'
         try{
-            const permissionState = await DeviceOrientationEvent.requestPermission();
+            const permissionState = await DeviceOrientationEvent.requestPermission()
             if(permissionState === 'granted'){
                 state.innerHTML = 'Permission granted'
                 window.addEventListener("deviceorientation", OrientationHandler)
@@ -245,7 +245,7 @@ async function requestDeviceOrientation(){
         window.addEventListener("deviceorientation", OrientationHandler)
     }else{
         state.innerHTML = 'Device orientation not supported'
-        alert('Device orientation not supported');
+        alert('Device orientation not supported')
 
     }
 

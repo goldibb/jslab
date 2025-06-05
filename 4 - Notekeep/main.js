@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
 
         const filteredNotes = notes.filter(note => {
-            if (!searchTerm) return true;
+            if (!searchTerm) return true
             return note.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
                    note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
                    note.tags.toLowerCase().includes(searchTerm.toLowerCase())
@@ -27,28 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (filteredNotes.length === 0) {
             if (searchTerm) {
-                notesList.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">Nie znaleziono notatek zawierających: "' + searchTerm + '"</p>'
+                notesList.innerHTML = '<p style="text-align: center color: #666 padding: 40px">Nie znaleziono notatek zawierających: "' + searchTerm + '"</p>'
             } else {
                 emptyState.style.display = 'block'
             }
             return
         }
 
-        emptyState.style.display = 'none';
+        emptyState.style.display = 'none'
         
         const sortedNotes = filteredNotes.sort((a, b) => {
-            if (a.isPinned && !b.isPinned) return -1;
-            if (!a.isPinned && b.isPinned) return 1;
+            if (a.isPinned && !b.isPinned) return -1
+            if (!a.isPinned && b.isPinned) return 1
             return 0 
         })
         
         sortedNotes.forEach((note) => {
-            const originalIndex = notes.indexOf(note);
+            const originalIndex = notes.indexOf(note)
             const noteElement = document.createElement('div')
             noteElement.classList.add('note')
             noteElement.style.backgroundColor = note.color
             if (isColorTooDark(note.color)) {
-                noteElement.style.color = 'white';
+                noteElement.style.color = 'white'
             }
             noteElement.innerHTML = `
                 <h2>${note.title}</h2>
@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isPinned = document.getElementById('noteChecked').checked
 
         if (!title || !content) {
-            alert('Proszę wypełnić wszystkie pola!');
-            return;
+            alert('Proszę wypełnić wszystkie pola!')
+            return
         }
 
         const NoteTemplate = {
@@ -92,35 +92,35 @@ document.addEventListener('DOMContentLoaded', () => {
         notes.push(NoteTemplate)
         saveNotesToStorage(notes)
 
-        document.getElementById('noteTitle').value = '';
-        document.getElementById('noteContent').value = '';
-        document.getElementById('NoteTags').value = '';
+        document.getElementById('noteTitle').value = ''
+        document.getElementById('noteContent').value = ''
+        document.getElementById('NoteTags').value = ''
     })
 
     searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.trim();
-        renderNotes(searchTerm);
+        const searchTerm = e.target.value.trim()
+        renderNotes(searchTerm)
     })
 
     window.editNote = function(index) {
-        const notes = getNotesFromStorage();
-        const note = notes[index];
+        const notes = getNotesFromStorage()
+        const note = notes[index]
         
-        const newTitle = prompt('Edytuj tytuł:', note.title);
-        if (newTitle === null) return;
+        const newTitle = prompt('Edytuj tytuł:', note.title)
+        if (newTitle === null) return
         
-        const newContent = prompt('Edytuj treść:', note.content);
-        if (newContent === null) return;
-        const newTags = prompt('Edytuj tagi:', note.tags);
-        if (newTags === null) return;
+        const newContent = prompt('Edytuj treść:', note.content)
+        if (newContent === null) return
+        const newTags = prompt('Edytuj tagi:', note.tags)
+        if (newTags === null) return
         
         if (newTitle.trim() && newContent.trim()) {
-            notes[index].title = newTitle.trim();
-            notes[index].content = newContent.trim();
+            notes[index].title = newTitle.trim()
+            notes[index].content = newContent.trim()
             notes[index].tags = newTags.trim()
-            saveNotesToStorage(notes);
+            saveNotesToStorage(notes)
         }
-    };
+    }
 
     window.deleteNote = function(index) {
         if (confirm('Czy na pewno chcesz usunąć tę notatkę?')) {
@@ -139,15 +139,15 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 function isColorTooDark(hexColor) {
     
-    const r = parseInt(hexColor.slice(1, 3), 16);
-    const g = parseInt(hexColor.slice(3, 5), 16);
-    const b = parseInt(hexColor.slice(5, 7), 16);
+    const r = parseInt(hexColor.slice(1, 3), 16)
+    const g = parseInt(hexColor.slice(3, 5), 16)
+    const b = parseInt(hexColor.slice(5, 7), 16)
   
     // Calculate luminance (perceived brightness)
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
   
-    const darknessThreshold = 0.5;
+    const darknessThreshold = 0.5
   
-    return luminance < darknessThreshold;
+    return luminance < darknessThreshold
   }
 
