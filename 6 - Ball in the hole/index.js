@@ -2,12 +2,11 @@ const state = document.querySelector('.state')
 const scoreCounter = document.querySelector('.score')
 let score = 0 
 
-// Timer variables
-let gameTime = 60 // 60 sekund
+let gameTime = 60 
 let gameTimer = null
 let gameActive = false
 
-// Dodajemy element timera do HTML
+
 const timerElement = document.createElement('div')
 timerElement.style.fontSize = '24px'
 timerElement.style.fontWeight = 'bold'
@@ -90,7 +89,7 @@ function updateTimer() {
     timerElement.innerHTML = `Czas: ${gameTime}s`
     
     if (gameTime <= 0) {
-        // Koniec gry
+        
         endGame()
     }
 }
@@ -108,7 +107,6 @@ function endGame() {
 }
 
 function resetBallPosition() {
-    // Resetuj pozycję kulki do środka
     b.x = 130
     b.y = 230
     b.dx = 1
@@ -153,15 +151,15 @@ function ballMovement(){
     ball.style.left = `${b.x}px`;
     ball.style.top = `${b.y}px`;
 
-    // Sprawdzenie trafienia w dziurę
+    
     if((Math.abs(b.y - h.y) < 8) && (Math.abs(b.x - h.x) < 8)){
         score += 1
         scoreCounter.innerHTML = `Score: ${score}`
         
-        // Resetuj pozycję kulki zamiast zatrzymywać grę
+        
         resetBallPosition()
         
-        // Kontynuuj grę jeśli jest aktywna
+        
         if(gameActive && b.move){
             b.ani = requestAnimationFrame(ballMovement);
         }
@@ -189,13 +187,13 @@ function OrientationHandler(event) {
     b.speed = Math.min((Math.abs(x) + Math.abs(y))/3, 8);
     console.log(`⚡ Speed: ${b.speed}`);
     
-    // Pokaż rzeczywiste wartości na stronie
+    
     state.innerHTML = `Beta: ${beta?.toFixed(1)}, Gamma: ${gamma?.toFixed(1)} | X: ${x.toFixed(1)}, Y: ${y.toFixed(1)} | Speed: ${b.speed.toFixed(2)}`;
 }
 
 document.querySelector('.start-button').addEventListener('click', () => {
     if(!gameActive) {
-        // Start gry
+        
         gameTime = 60
         score = 0
         gameActive = true
@@ -203,15 +201,15 @@ document.querySelector('.start-button').addEventListener('click', () => {
         scoreCounter.innerHTML = `Score: ${score}`
         timerElement.innerHTML = `Czas: ${gameTime}s`
         
-        // Resetuj pozycje
+        
         h.y = 0
         h.x = 0
         resetBallPosition()
 
-        // Start timer
+        
         gameTimer = setInterval(updateTimer, 1000)
         
-        // Start animacji
+        
         b.ani = requestAnimationFrame(ballMovement);
         h.ani = requestAnimationFrame(holeMovement);
 
@@ -220,7 +218,7 @@ document.querySelector('.start-button').addEventListener('click', () => {
         
         document.querySelector('.start-button').innerHTML = 'Stop'
     } else {
-        // Stop gry
+        
         endGame()
         document.querySelector('.start-button').innerHTML = 'Start'
     }
